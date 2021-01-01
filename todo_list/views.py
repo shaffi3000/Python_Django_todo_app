@@ -4,10 +4,6 @@ from .models import Todo
 from .forms import CreateTodo
 
 # Create your views here.
-def event(request):
-    context = {}
-    system = request.POST.get('buttonAdd', None)
-    context['buttonAdd': system]
 
 def index(request):
     if request.method == 'POST':

@@ -1,0 +1,18 @@
+
+
+.users_nav_a > h5, .users_nav_a {
+    text-decoration: none;
+    letter-spacing: 1px;
+    color: tomato;
+    font-size: 2rem;
+}
+
+.users_nav_a:hover {
+    text-decoration: underline;
+}
+
+
+.container {
+    padding: 40px;
+	font-family: 'Oswald', 'Futura', sans-serif;
+}
