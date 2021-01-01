@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>ToDo App</title>
+		<link rel="stylesheet" href="{% static 'todo_list/style.css' %}">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+	</head>
+	<body>
+
+		<div class="container" id="wrapper">
+			
+			<div class="row justify-content-center">
+				<div class="col-lg-4 content" id="contentDay">
+					<h2>Tasks for today</h2>
+					
+					<form action="{% url 'index' %}" method="POST" role="form" id="dayForm">
+						{% csrf_token %}
+						<div class="form-group">
+							<div class="input-group">
+								{{ form.text }}
+							  <span class="input-group-btn">
+								<button type="submit" class="btn btn-dark" form="dayForm" name="addButton" value="day">ADD</button>
+							</span>
+							</div>
+						</div>
+					</form>
+
+					<div class="row t10">
+						<div class="col-lg-12">
+							<div class="row">
+								<div class="col">
+									<div class="btn-group">
+										<a href="{% url 'deletecomplete' %}"><button type="button" class="btn btn-warning">
+											DELETE COMPLETED
+										</button></a>
+									</div>
+								</div>
+								<div class="col">
+									<div class="btn-group">
+										<a href="{% url 'deleteall' %}"><button type="button" class="btn btn-warning">
+											DELETE ALL
+										</button></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<ul class="list-group t20">
+						{% for item in items %}
+							{% if item.type == 'day' %}
+								{% if item.complete %}
+									<li class="list-group-item todo-completed">{{ item.text }}</li>
+								{% else %}
+									<a href="{% url 'complete' item.id %}"><li class="list-group-item">{{ item.text }}</li></a>
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			<!-- Tasks for the week ------------------------------------- -->
+				<div class="col-lg-4 content" id="contentWeek">
+					<h2>Tasks for this week</h2>
+					
+					<form action="{% url 'index' %}" id="weekForm" method="POST" role="form">
+						{% csrf_token %}
+						<div class="form-group">
+							<div class="input-group">
+								{{ form.text }}
+							  <span class="input-group-btn">
+								  <button type="submit" class="btn btn-dark" form="weekForm" name="addButton" value="week" >ADD</button>
+							  </span>
+							</div>
+						</div>
+					</form>
+
+					<div class="row t10">
+						<div class="col-lg-12">
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<a href="{% url 'deletecomplete' %}"><button type="button" class="btn btn-warning">
+										DELETE COMPLETED
+								   </button></a>
+								</div>
+								<div class="btn-group">
+									<a href="{% url 'deleteall' %}"><button type="button" class="btn btn-warning">
+										DELETE ALL
+								   </button></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<ul class="list-group t20">
+						{% for item in items %}
+							{% if item.type == 'week' %}
+								{% if item.complete %}
+									<li class="list-group-item todo-completed">{{ item.text }}</li>
+								{% else %}
+									<a href="{% url 'complete' item.id %}"><li class="list-group-item">{{ item.text }}</li></a>
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<footer>
+				<div class="row pad">
+					<div class="col-lg-12 text-center">
+						Copyright &copy; 2017 <strong>ToDo App</strong>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+		<!-- jQuery -->
+	</body>
+</html>
