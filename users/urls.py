@@ -10,7 +10,9 @@ from . import views
 
 
 urlpatterns = [
-    path('users/', views.index, name='index')
+    path('users/', views.index, name='users/index'),
+    path('register/', views.register, name='register'),
+    path('profile/', views.profile, name='profile')
 ]
 
 

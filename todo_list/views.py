@@ -12,8 +12,9 @@ def index(request):
         if form.is_valid():
             typeT = request.POST.get('addButton', 'day')
             print(typeT)
-            textT = request.POST['text'] + str(typeT)
-            new_item = Todo(text=textT, type=typeT)
+            textT = request.POST['text']
+            user = request.user
+            new_item = Todo(text=textT, type=typeT, owner=user.username)
             new_item.save()
             return redirect('index')
 
@@ -37,6 +38,7 @@ def completeTodo(request, todo_id):
 
 def deleteComplete(request):
     Todo.objects.filter(complete__exact=True).delete()
+    #add some code to only delete form day/ week
 
     return redirect('index')    
 

@@ -16,3 +16,36 @@
     padding: 40px;
 	font-family: 'Oswald', 'Futura', sans-serif;
 }
+
+
+
+#registerF, #registerForm, .content-section {
+    background-color: lightgrey;
+}
+
+#registerForm {
+    margin-top:40px;
+    letter-spacing: 1px;
+}
+
+.help-block {
+    font-size: 0.9rem;
+    display: none;
+}
+
+#regForm label, #regForm input {
+    margin-top: 5px;
+} 
+
+#signUpBtn {
+    margin-top: 10px;
+}
+
+
+
+
+
+
+/* #regForm {
+    text-align: center;
+} */
